@@ -9,7 +9,7 @@ main() {
 
     for keyboard in "${!_keymaps[@]}"; do
         ln -sf \
-            "$(realpath "$_scriptdir/$keyboard/${_keymaps[keyboard]}")" \
+            "$(realpath "$_scriptdir/$keyboard/${_keymaps[$keyboard]}")" \
             "$(realpath "$_scriptdir/../zmk-config/$keyboard/config/${_keymaps[$keyboard]}")"
     done
 }
