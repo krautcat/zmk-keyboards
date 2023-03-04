@@ -4,13 +4,13 @@ main() {
     local _scriptdir
     _scriptdir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd )"
 
-    local _keyboards=("ladniy_customs/tk44")
-    local _keymaps=("tk44.keymap")
+    declare -A _keymaps
+    _keymaps[ladniy_customs/tk44]="tk44.keymap"
 
-    for i in "${!_keyboards[@]}"; do
+    for keyboard in "${!_keymaps[@]}"; do
         ln -sf \
-            "$(realpath "$_scriptdir/${_keyboards[i]}")" \
-            "$(realpath "$_scriptdir/../zmk-config/${_keyboards[i]}/${_keymaps[i]})"
+            "$(realpath "$_scriptdir/$keyboard/${_keymaps[keyboard]}")" \
+            "$(realpath "$_scriptdir/../zmk-config/$keyboard/config/${_keymaps[$keyboard]})"
     done
 }
 
